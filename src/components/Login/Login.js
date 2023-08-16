@@ -13,6 +13,30 @@ const Login = (props) => {
   const [collegeIsValid, setCollegeIsValid] = useState();
   const [formIsValid, setFormIsValid] = useState(false);
 
+  // useEffect(()=>{
+  //   console.log('effect running')  this will run in every keystroke
+  // },)
+
+  // useEffect(()=>{
+  //   console.log('effect running')  this will run only one
+  // },[])
+
+
+  // useEffect(()=>{
+  //   console.log('effect running') this will run one time first and rhen  whenever password changed
+  // },[enteredPassword])
+
+  useEffect(()=>{
+      console.log('effect running')
+      
+      return (()=>{
+        console.log('effect cleanup')  /// this is run when component is remove from dom
+      })
+    },[])
+  
+  
+
+
   useEffect(() => {
     const identifire = setTimeout(()=>{
       console.log('check form validity')
