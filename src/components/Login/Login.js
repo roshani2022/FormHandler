@@ -56,30 +56,50 @@ const Login = (props) => {
     };
   }, []);
 
+  const {isValid:emailIsValid} = emailState;
+  const {isValid:passwordIsValid} = passwordState;
+  const {isValid:collegeIsValid} = collegeState;
+
+  useEffect(() => {
+    const identifire = setTimeout(() => {
+      console.log("check form validity");
+      setFormIsValid(
+        emailIsValid&&
+          passwordIsValid &&
+          collegeIsValid
+      );
+    }, 500);
+
+    return () => {
+      console.log("cleanup");
+      clearTimeout(identifire);
+    };
+  }, [emailIsValid,passwordIsValid,collegeIsValid]);
+
   const emailChangeHandler = (event) => {
     dispatchEmail({ type: "User_input", val: event.target.value });
-    setFormIsValid(
-      event.target.value.includes("@") &&
-        passwordState.isValid &&
-        collegeState.isValid
-    );
+    // setFormIsValid(
+    //   event.target.value.includes("@") &&
+    //     passwordState.isValid &&
+    //     collegeState.isValid
+    // );
   };
 
   const passwordChangeHandler = (event) => {
     dispatchPassword({ type: "User_input", val: event.target.value });
-    setFormIsValid(
-      emailState.isValid &&
-        event.target.value.trim().length > 6 &&
-        collegeState.isValid
-    );
+    // setFormIsValid(
+    //   emailState.isValid &&
+    //     event.target.value.trim().length > 6 &&
+    //     collegeState.isValid
+    // );
   };
   const collegeNameHandler = (event) => {
     dispatchcollege({ type: "User_input", val: event.target.value });
-    setFormIsValid(
-      emailState.isValid &&
-        passwordState.isValid &&
-        event.target.value.trim().length > 0
-    );
+    // setFormIsValid(
+    //   emailState.isValid &&
+    //     passwordState.isValid &&
+    //     event.target.value.trim().length > 0
+    // );
   };
 
   const validateEmailHandler = () => {
