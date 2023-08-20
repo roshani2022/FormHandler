@@ -100,7 +100,19 @@ const Login = (props) => {
 
   const submitHandler = (event) => {
     event.preventDefault();
-    authctx.onLogin(emailState.value, passwordState.value, collegeState.value);
+    if(formIsValid){
+      authctx.onLogin(emailState.value, passwordState.value, collegeState.value);
+    }
+    else if(!emailIsValid){
+
+    }
+    else if(!passwordIsValid){
+
+    }
+    else{
+      
+    }
+    
   };
 
   return (
@@ -134,7 +146,7 @@ const Login = (props) => {
           onBlur={validateCollegedHandler}
         />
         <div className={classes.actions}>
-          <Button type="submit" className={classes.btn} disabled={!formIsValid}>
+          <Button type="submit" className={classes.btn}>
             Login
           </Button>
         </div>
